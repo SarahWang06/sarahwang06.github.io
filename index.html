@@ -602,6 +602,17 @@
   .hobby.has-photo:hover .bg{opacity:1;transform:none}
   .hobby.has-photo:hover::after{opacity:1}
   .hobby .icon{transition:opacity .4s}.hobby.has-photo:hover .icon{opacity:0}
+  /* 让五张卡片的标题和正文分别对齐在同一水平线上（subgrid 共享行高） */
+  @supports (grid-template-rows:subgrid){
+    @media(min-width:1001px){
+      .hobbies{grid-template-rows:auto minmax(150px,1fr) auto auto;row-gap:0}
+      .hobby{grid-row:span 4;display:grid;grid-template-rows:subgrid;min-height:0;align-content:stretch}
+      .hobby > div{display:contents}
+      .hobby .icon{align-self:center}
+      .hobby h3{align-self:start}
+      .hobby p{align-self:start}
+    }
+  }
   @media(max-width:1000px){.hobbies{grid-template-columns:1fr 1fr}}
   @media(max-width:560px){.hobbies{grid-template-columns:1fr}.hobby{min-height:220px}}
 
